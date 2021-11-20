@@ -35,12 +35,10 @@ elif choice == 'About me':
 elif choice == 'Capture From Webcam':
 
     #Load your model and check create the class_names list
-    Model_Path = '____________'
-    class_names = [_________________________]
-    model = tf.keras.load_model(Model_Path)
+    # Model_Path = '____________'
+    # class_names = [_________________________]
+    # model = tf.keras.load_model(Model_Path)
 
-
-    if choice == 'Capture From Webcam':
         cap = cv2.VideoCapture(0)  # device 0
         run = st.checkbox('Show Webcam')
         capture_button = st.checkbox('Capture')
@@ -65,18 +63,4 @@ elif choice == 'Capture From Webcam':
 
         cap.release()
 
-        if  captured_image.all() != None:
-            st.image(captured_image)
-            st.write('Image is capture:')
-
-            #Resize the Image according with your model
-            captured_image = cv2.resize(_____________)
-            #Expand dim to make sure your img_array is (1, Height, Width , Channel ) before plugging into the model
-            img_array  = np.expand_dims(captured_image, axis=0)
-            #Check the img_array here
-            st.write(img_array)
-
-            prediction = model.predict(img_array)
-
-            # Preprocess your prediction , How are we going to get the label name out from the prediction
-            # Now it's your turn to solve the rest of the code
+        
