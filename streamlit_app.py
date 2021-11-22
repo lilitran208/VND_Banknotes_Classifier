@@ -6,23 +6,28 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from PIL import Image
 
-menu = ['Home','Predict Banknotes','Upload photo']
+menu = ['Home','Predict Banknotes by Cam','Upload photo to predict']
 choice = st.sidebar.selectbox('Menu',menu)
 
 # Load your model and check create the class_names list
-Model_Path = 'model_checkpoint4_DenseNet.h5'
+Model_Path = 'model_Densenet121_best9792.h5'
 class_names = ['1000','10000','100000','2000','20000','200000','5000','50000','500000']
 model = tf.keras.models.load_model(Model_Path)
 
 if choice == 'Home':
     st.header('Weekly Project 8 - Banknotes Classifier')
+    st.subheader('by Lili')
     st.write('Hello guys, this is my model to predict banknotes of Vietnam')
     st.image('donald duck.gif')
+    st.write('Let\'s listen to this song: Money by Lalisa')
+    st.video('https://youtu.be/5CQj9sZIA5g')
+    st.balloons()
     
-elif choice == 'Predict Banknotes':
+elif choice == 'Predict Banknotes by Cam':
+    st.subheader('Banknote classifier using your own webcam')
+    st.image('https://4.img-dpreview.com/files/p/E~TS940x788~articles/6428199442/Camera-pricing-b.jpeg')
+    st.warning('This feature can only use in localhost')
 
-
-    
     cap = cv2.VideoCapture(0)  # device 0
     run = st.checkbox('Show Webcam')
     capture_button = st.checkbox('Capture')
@@ -48,7 +53,7 @@ elif choice == 'Predict Banknotes':
 
     if captured_image.all() != None:
         st.image(captured_image)
-        st.write('Image is capture')
+        st.write('Image is captured')
 
         #Resize the Image according with your model
         captured_image = cv2.resize(captured_image,(224,224))
@@ -63,8 +68,11 @@ elif choice == 'Predict Banknotes':
         # Now it's your turn to solve the rest of the code
         index = np.argmax(prediction.flatten())
         st.write('The banknote is ',class_names[index],'dong')
+        st.balloons()
     
-elif choice == 'Upload photo':
+elif choice == 'Upload photo to predict':
+    st.subheader('Upload from your computer or mobile phone')
+    st.info('You can take a photo to predict on your smartphone too')
     uploaded_file = st.file_uploader('Upload photo',type=['png','jpg','jpeg'])
     
 
@@ -90,3 +98,4 @@ elif choice == 'Upload photo':
         # Now it's your turn to solve the rest of the code
         index = np.argmax(prediction.flatten())
         st.write('The banknote is ',class_names[index],'dong')
+        st.balloons()
