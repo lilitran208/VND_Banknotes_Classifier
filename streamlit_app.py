@@ -6,20 +6,22 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from PIL import Image
 
-menu = ['Home','Predict Banknotes']
+menu = ['Home','Predict Banknotes','Upload photo']
 choice = st.sidebar.selectbox('Menu',menu)
+
+# Load your model and check create the class_names list
+Model_Path = 'model_checkpoint4_DenseNet.h5'
+class_names = ['1000','10000','100000','2000','20000','200000','5000','50000','500000']
+model = tf.keras.models.load_model(Model_Path)
 
 if choice == 'Home':
     st.header('Weekly Project 8 - Banknotes Classifier')
     st.write('Hello guys, this is my model to predict banknotes of Vietnam')
-    st.image('.\media\donald duck.gif')
+    st.image('donald duck.gif')
     
 elif choice == 'Predict Banknotes':
 
-# Load your model and check create the class_names list
-    Model_Path = 'model_checkpoint4_DenseNet.h5'
-    class_names = ['1000','10000','100000','2000','20000','200000','5000','50000','500000']
-    model = tf.keras.models.load_model(Model_Path)
+
     
     cap = cv2.VideoCapture(0)  # device 0
     run = st.checkbox('Show Webcam')
@@ -62,6 +64,7 @@ elif choice == 'Predict Banknotes':
         index = np.argmax(prediction.flatten())
         st.write('The banknote is ',class_names[index],'dong')
     
+elif choice == 'Upload photo':
     uploaded_file = st.file_uploader('Upload photo',type=['png','jpg','jpeg'])
     
 
