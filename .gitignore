@@ -3,3 +3,4 @@
 .gitattributes
 .vscode/settings.json
 *.pyc
+model_checkpoint_Resnet50v2.h5
