@@ -12,7 +12,7 @@ choice = st.sidebar.selectbox('Menu',menu)
 if choice == 'Home':
     st.header('Weekly Project 8 - Banknotes Classifier')
     st.write('Hello guys, this is my model to predict banknotes of Vietnam')
-    st.image('media\donald duck.gif')
+    st.image('.\media\donald duck.gif')
     
 elif choice == 'Predict Banknotes':
 
